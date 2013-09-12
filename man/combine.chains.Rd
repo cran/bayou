@@ -1,0 +1,21 @@
+\name{combine.chains}
+\alias{combine.chains}
+\title{Combine mcmc chains}
+\usage{
+  combine.chains(chain1, chain2, burnin.prop = 0)
+}
+\arguments{
+  \item{chain1}{The first chain to be combined}
+
+  \item{chain2}{The second chain to be combined}
+
+  \item{burnin.prop}{The proportion of burnin from each
+  chain to be discarded}
+}
+\value{
+  A combined bayouMCMC chain
+}
+\description{
+  Combine mcmc chains
+}
+

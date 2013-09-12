@@ -1,0 +1,20 @@
+\name{OUwie2bayou}
+\alias{OUwie2bayou}
+\title{Converts OUwie data into bayou format}
+\usage{
+  OUwie2bayou(tree, trait)
+}
+\arguments{
+  \item{tree}{A phylogenetic tree with states at internal
+  nodes as node labels}
+
+  \item{trait}{A data frame in OUwie format}
+}
+\value{
+  A bayou formatted parameter list
+}
+\description{
+  \code{OUwie2bayou} Converts OUwie formatted data into a
+  bayou formatted parameter list
+}
+
