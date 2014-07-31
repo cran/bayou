@@ -1,4 +1,4 @@
-16e47eaabb28a959a6c9725e5ffb063e *DESCRIPTION
+cbe03d2afce734c2ec85aa4e9bae33eb *DESCRIPTION
 5d191c739ef68f1bb4ff69fd85c7638e *NAMESPACE
 e5e6216af1f458a9a3280c0018b2df69 *R/RcppExports.R
 46b1bce2a184f0da4d17c3cc83feda56 *R/bayou-likelihood.R
@@ -60,6 +60,7 @@ c149e75278a5eca7ca0a2a84bc0a7953 *man/set.burnin.Rd
 9f809b642800d57c18c65abe264a6297 *man/simmap.W.Rd
 c207fbd8ad216f4a2dadaa5260abc134 *man/steppingstone.Rd
 9d3237772160bc275d84d27873313dbe *man/summary.bayouMCMC.Rd
+2f14af531daf35ae5a8e259fd641f47a *src/Makevars.win
 785c5f457ae5c6e62f3208f8094164b6 *src/RcppExports.cpp
 df3983f15976bf2fa21ca5aa6a6c77b1 *src/branches.cpp
 694f2cab020583cc19ec3ad459785165 *src/threepoint.cpp
