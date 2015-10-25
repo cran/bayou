@@ -95,7 +95,8 @@ priorSim <- function(prior,tree,plot=TRUE,nsim=1, ...){
 #' @description This function simulates data for a given set of parameter values.
 #' 
 #' @export
-dataSim <- function(pars, model, tree, map.type="pars", SE=0, phenogram=TRUE, ...){
+dataSim <- function(pars, model, tree, map.type="pars", SE=0, 
+                    phenogram=TRUE, ...){
   if(model %in% c("QG")){
     pars$alpha <- QG.alpha(pars)
     pars$sig2 <- QG.sig2(pars)
@@ -128,7 +129,7 @@ dataSim <- function(pars, model, tree, map.type="pars", SE=0, phenogram=TRUE, ..
   if(phenogram){
     col <- c(1,rainbow(pars$k))
     names(col) <- 1:pars$ntheta
-    phenogram(cache$phy,X,colors=col, ...)
+    phenogram(cache$phy,X,colors=col,spread.labels=FALSE, ...)
   }
   return(list(W=W, E.th=E.th,dat=X))
 }

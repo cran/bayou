@@ -34,7 +34,8 @@
 #' and the number of shifts is adjusted by splitting and merging, as well as sliding the shifts both within and between branches. Allowed shift locations are specified by the 
 #' prior function (see make.prior()). 
 
-bayou.mcmc <- function(tree, dat, SE=0, model="OU", prior, ngen=10000, samp=10, chunk=100, control=NULL, tuning=NULL, new.dir=FALSE, plot.freq=500, outname="bayou", ticker.freq=1000, tuning.int=c(0.1,0.2,0.3), startpar=NULL, moves=NULL, control.weights=NULL, lik.fn=NULL){
+bayou.mcmc <- function(tree, dat, SE=0, model="OU", prior, ngen=10000, samp=10, chunk=100, control=NULL, tuning=NULL, new.dir=FALSE, plot.freq=500, outname="bayou", ticker.freq=1000, tuning.int=c(0.1,0.2,0.3), 
+                       startpar=NULL, moves=NULL, control.weights=NULL, lik.fn=NULL){
   fixed <- gsub('^[a-zA-Z]',"",names(attributes(prior)$distributions)[which(attributes(prior)$distributions=="fixed")])
   if("loc" %in% fixed){
     fixed <- c(fixed,"slide")
@@ -113,7 +114,7 @@ bayou.mcmc <- function(tree, dat, SE=0, model="OU", prior, ngen=10000, samp=10, 
     tr <- .toSimmap(.pars2map(oldpar, cache),cache)
     tcols <- makeTransparent(rainbow(oldpar$ntheta),alpha=100)
     names(tcols)<- 1:oldpar$ntheta
-    phenogram(tr,dat,colors=tcols,ftype="off")
+    phenogram(tr,dat,colors=tcols,ftype="off", spread.labels=FALSE)
     plot.dim <- list(par('usr')[1:2],par('usr')[3:4])
   }
   #tuning.int <- round(tuning.int*ngen,0)
@@ -128,7 +129,12 @@ bayou.mcmc <- function(tree, dat, SE=0, model="OU", prior, ngen=10000, samp=10, 
     hr <- prop$hr
     new <- lik.fn(new.pars, cache, dat, model=model)
     nll <- new$loglik
-    if (runif(1) < exp(nll-oll+pr2-pr1+hr)){
+    ar <- exp(nll-oll+pr2-pr1+hr)
+    if(is.na(ar)){
+      ar <- -Inf
+      #return(list(prop=prop, new.pars=new.pars, nll=nll, oll=oll, pr2=pr2, pr1=pr1, hr=hr, pars=oldpar))
+    }
+    if (runif(1) < ar){
       oldpar <- new.pars
       pr1 <- pr2
       oll <- nll
@@ -146,7 +152,7 @@ bayou.mcmc <- function(tree, dat, SE=0, model="OU", prior, ngen=10000, samp=10, 
         mtext(paste("gens = ",i," lnL = ",round(oll,2)),3)
         #regime.plot probably doesn't work for simmaps
         #try(regime.plot(oldpar,tr$tree,tcols,type="density",model=model),silent=TRUE)
-        phenogram(tr,dat,colors=tcols,ftype="off",add=TRUE)
+        phenogram(tr,dat,colors=tcols,ftype="off",add=TRUE, spread.labels=FALSE)
       }
     }
     #if(i %in% tuning.int){
