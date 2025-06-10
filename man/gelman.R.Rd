@@ -4,8 +4,7 @@
 \alias{gelman.R}
 \title{Calculate Gelman's R statistic}
 \usage{
-gelman.R(parameter, chain1, chain2, freq = 20, start = 1, plot = TRUE,
-  ...)
+gelman.R(parameter, chain1, chain2, freq = 20, start = 1, plot = TRUE, ...)
 }
 \arguments{
 \item{parameter}{The name or number of the parameter to calculate the statistic on}
@@ -21,6 +20,9 @@ gelman.R(parameter, chain1, chain2, freq = 20, start = 1, plot = TRUE,
 \item{plot}{A logical indicating whether the results should be plotted}
 
 \item{...}{Optional arguments passed to \code{gelman.diag(...)} from the \code{coda} package}
+}
+\value{
+A data frame with two columns giving the R statistic and its 95 percent upper CI.
 }
 \description{
 Calculate Gelman's R statistic

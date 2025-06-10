@@ -1,5 +1,6 @@
-context("data can be loaded")
-test_that("data can be loaded", {
-  data(chelonia)
-  expect_that(length(chelonia$phy$tip.label),equals(226))
+#context("data can be loaded")
+testthat::test_that("data can be loaded", {
+  library(bayou)
+  data(chelonia, package="geiger")
+  testthat::expect_equal(length(chelonia$phy$tip.label),226)
 })
